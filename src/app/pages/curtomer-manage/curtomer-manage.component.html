@@ -1,0 +1,113 @@
+<div class="container">
+    <div class="row">
+      <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+          <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+              <use xlink:href="#bootstrap" />
+            </svg>
+            <span class="fs-4">Simple header</span>
+          </a>
+  
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+          </ul>
+        </header>
+      </div>
+  
+      <form class="col-6">
+        <div class="mb-3">
+          <label for="name" class="form-label">Customer Name</label>
+          <input type="text" class="form-control" [(ngModel)]="customer.name" name="name" id="name" />
+        </div>
+        <div class="mb-3">
+          <label for="city" class="form-label">Customer City</label>
+          <input type="text" class="form-control" [(ngModel)]="customer.city" name="city" id="city" />
+        </div>
+        <div class="mb-3">
+          <label for="contact" class="form-label">Customer Contact</label>
+          <input type="text" class="form-control" [(ngModel)]="customer.contact" name="contact" id="contact" />
+        </div>
+  
+        <button type="button" class="btn btn-primary" (click)="addCustomer()">Add Customer</button>
+      </form>
+    </div>
+  
+    <div class="row">
+      <div class="container mt-5">
+        <div class="mt-5">
+          <table class="table mt-5">
+            <thead class="thead-dark bg-black">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Customer City</th>
+                <th scope="col">Contact Number</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Update</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let customer of customerList">
+                <th scope="row">{{ customer.id }}</th>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.city }}</td>
+                <td>{{ customer.contact }}</td>
+                <td>
+                  <button class="btn bg-danger" (click)="DeleteCus(customer)">
+                    <i class="bi bi-trash3-fill"></i>
+                  </button>
+                </td>
+                <td>
+                  <button class="btn bg-danger-subtle" (click)="UpdateCus(customer)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Update Customer</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="customer-id" class="col-form-label">Id:</label>
+                <input type="text" class="form-control" id="customer-id" disabled [(ngModel)]="customerUpdate.id" />
+              </div>
+      
+              <div class="mb-3">
+                <label for="customer-name" class="col-form-label">Customer Name:</label>
+                <input type="text" class="form-control" id="customer-name" [(ngModel)]="customerUpdate.name" />
+              </div>
+      
+              <div class="mb-3">
+                <label for="customer-city" class="col-form-label">City:</label>
+                <input type="text" class="form-control" id="customer-city" [(ngModel)]="customerUpdate.city" />
+              </div>
+      
+              <div class="mb-3">
+                <label for="customer-contact" class="col-form-label">Contact:</label>
+                <input type="text" class="form-control" id="customer-contact" [(ngModel)]="customerUpdate.contact" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" (click)="SaveUpdatedetails()">Update</button>
+            </div>
+          </div>
+        </div>
+      </div>      
+  </div>
+  
